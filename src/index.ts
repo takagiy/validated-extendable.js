@@ -1,4 +1,4 @@
-import type { z, ZodTypeDef, ZodSchema } from "zod";
+import type { ZodSchema, ZodTypeDef, z } from "zod";
 
 export type ValidatedConstructor<
   Schema extends ZodSchema<unknown, ZodTypeDef, unknown>,
