@@ -1,5 +1,5 @@
 /.swcrc
 /biome.json
-/tsconfig.json
+/tsconfig.*
 /src
 /tests
