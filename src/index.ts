@@ -44,7 +44,7 @@ export const ValidatedMutable = <
 >(
   schema: Schema,
 ) => {
-  return function ValidatedMutable(value: z.input<typeof schema>) {
+  const ctor = function ValidatedMutable(value: z.input<typeof schema>) {
     const validatedValue = schema.parse(value);
     const _isObject = isObject(validatedValue);
     const object = _isObject ? validatedValue : { value: validatedValue };
@@ -65,6 +65,8 @@ export const ValidatedMutable = <
       },
     });
   } as unknown as ValidatedMutableConstructor<Schema>;
+  ctor.schema = schema;
+  return ctor;
 };
 
 const isObject = (value: unknown): value is object =>
