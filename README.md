@@ -42,7 +42,7 @@ class Person extends Validated(schema) {
 const person = new Person({ name: "John", age: 25 });
 // const invalidPerson = new Person({ name: "John", age: -1 }); // => Throws an error
 
-/* You can access the properties as usual */
+/* All properties are fully typed and accessible as usual */
 console.log(person.name, person.age); // => John 25
 
 /* You can get the original zod schema by accessing the 'schema' static property */
