@@ -7,15 +7,15 @@ Library that allows you to define classes extending zod schemas to avoid boilerp
 ## Installation
 
 ```bash
-npm install validated-extendable
+npm install validated-extendable zod
 ```
 
 ```bash
-pnpm add validated-extendable
+pnpm add validated-extendable zod
 ```
 
 ```bash
-yarn add validated-extendable
+yarn add validated-extendable zod
 ```
 
 ## Usage
