@@ -1,6 +1,6 @@
 {
   "name": "validated-extendable",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Library that allows you to define classes extending zod schemas to avoid boilerplate code.",
   "exports": {
     ".": {
