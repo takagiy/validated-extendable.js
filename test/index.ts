@@ -393,3 +393,21 @@ test("validate nested object mutation error (wrapValue)", (t) => {
   foo.value.bar.baz = 0.5;
   t.is(foo.value.bar.baz, 0.5);
 });
+
+class Article extends ValidatedMutable(
+  z.object({
+    title: z.string().min(1),
+    postedAt: z.instanceof(Date),
+  }),
+) {}
+
+test("validate instanceof", (t) => {
+  const article = new Article({
+    title: "Hello",
+    postedAt: new Date("2021-01-01"),
+  });
+  t.is(article.title, "Hello");
+  t.is(article.postedAt.getFullYear(), 2021);
+  t.is(article.postedAt.getMonth(), 0);
+  t.is(article.postedAt.getDate(), 1);
+});
