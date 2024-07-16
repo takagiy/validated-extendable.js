@@ -171,7 +171,7 @@ class Foo2 extends ValidatedMutable(schema, { wrapValue: true }) {}
 const x = new Foo2({ foo: 1, bar: { baz: 2 } });
 
 /* This will be validated */
-// x.value = { foo: -1, bar: { baz: -1 } }; // => Throws an error
+// x.value = { foo: 1, bar: { baz: -1 } }; // => Throws an error
 
 /* This will also be validated */
 // x.value.foo = -1; // => Throws an error

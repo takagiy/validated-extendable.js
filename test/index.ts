@@ -374,6 +374,9 @@ test("validate nested object mutation error (wrapValue)", (t) => {
     },
   });
   t.throws(() => {
+    foo.value = { foo: 1, bar: { baz: -1 } };
+  });
+  t.throws(() => {
     foo.value.foo = -1;
   });
   t.throws(() => {
