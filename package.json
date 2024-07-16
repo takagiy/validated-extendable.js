@@ -30,7 +30,8 @@
     "build:js:esm": "swc src --out-dir dist/esm --strip-leading-paths --config module.type=es6 && echo '{ \"type\": \"module\" }' > dist/esm/package.json",
     "lint": "biome check; status=$?; echo 'Use `pnpm run lint!` to apply the fixes.'; exit $status",
     "lint!": "biome check --write",
-    "test": "ava",
+    "test": "pnpm run test:types && ava",
+    "test:types": "tsc --noEmit",
     "version": "pnpm run lint!",
     "prepublishOnly": "pnpm run lint",
     "prepare": "pnpm run build"

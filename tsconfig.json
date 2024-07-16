@@ -3,6 +3,7 @@
     "@tsconfig/strictest/tsconfig.json"
   ],
   "compilerOptions": {
+    "moduleResolution": "Node",
     "target": "ES2018",
     "declaration": true,
     "skipLibCheck": true,
