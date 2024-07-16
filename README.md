@@ -93,3 +93,92 @@ const age = new Age(25);
 
 console.log(age.value); // => 25
 ```
+
+## Limitations
+
+By default, the result type of the validation (other than primitive types) should not be a uninheritable type (e.g. tuple types and union types).
+
+But you can use `wrapValue` option to wrap an uninheritable type with an object to make it inheritable (like primitive types are wrapped in above examples).
+
+```typescript
+import { Validated } from "validated-extendable";
+import { z } from "zod";
+
+/* The validation result type will be '{ success: true, message: string } | { success: false, error: string }' */
+const schema = z.discriminatedUnion("success", [
+  z.object({
+    success: z.literal(true),
+    message: z.string(),
+  }),
+  z.object({
+    success: z.literal(false),
+    error: z.string(),
+  }),
+]);
+
+/* To extend the uninheritable type, you can use 'wrapValue' option */
+class Result extends Validated(schema, { wrapValue: true }) {
+  getError(): string | undefined {
+    /* You can access the wrapped value with the 'value' property */
+    return !this.value.success ? this.value.error : undefined;
+  }
+}
+
+const failure = new Result({ success: false, error: "Oops!" });
+console.log(failure.getError()); // => Oops!
+```
+
+Validation of setters provided by `ValidatedMutable` won't be called when you set a nested property.
+
+```typescript
+import { ValidatedMutable } from "validated-extendable";
+import { z } from "zod";
+
+const schema = z.object({
+  foo: z.number().nonnegative().int(),
+  bar: z.object({
+    baz: z.number().nonnegative().int(),
+  }),
+});
+
+class Foo extends ValidatedMutable(schema) {}
+
+const x = new Foo({ foo: 1, bar: { baz: 2 } });
+
+/* This will be validated */
+// x.foo = -1; // => Throws an error
+
+/* This will also be validated */
+// x.bar = { baz: -1 }; // => Throws an error
+
+/* This won't be validated */
+x.bar.baz = -1; // => Throws no error!!!
+```
+
+```typescript
+import { ValidatedMutable } from "validated-extendable";
+import { z } from "zod";
+
+const schema = z.object({
+  foo: z.number().nonnegative().int(),
+  bar: z.object({
+    baz: z.number().nonnegative().int(),
+  }),
+});
+
+class Foo2 extends ValidatedMutable(schema, { wrapValue: true }) {}
+
+const x = new Foo2({ foo: 1, bar: { baz: 2 } });
+
+/* This will be validated */
+// x.value = { foo: -1, bar: { baz: -1 } }; // => Throws an error
+
+/* This will also be validated */
+// x.value.foo = -1; // => Throws an error
+
+/* This will also be validated */
+// x.value.bar = { baz: -1 }; // => Throws an error
+
+/* This won't be validated */
+x.value.bar.baz = -1; // => Throws no error!!!
+```
