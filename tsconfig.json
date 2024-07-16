@@ -1,9 +1,9 @@
 {
   "extends": [
-    "@tsconfig/node-lts/tsconfig.json",
     "@tsconfig/strictest/tsconfig.json"
   ],
   "compilerOptions": {
+    "target": "ES2018",
     "declaration": true,
     "skipLibCheck": true,
     "outDir": "./dist",
