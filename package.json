@@ -6,11 +6,11 @@
     ".": {
       "require": {
         "default": "./dist/cjs/index.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/cjs/index.d.ts"
       },
       "import": {
         "default": "./dist/esm/index.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/esm/index.d.ts"
       }
     }
   },
