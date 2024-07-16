@@ -55,9 +55,6 @@ export const ValidatedMutable = <
   const makeValidatedValueProxy = (validatedValue: object) => {
     return new Proxy(validatedValue, {
       set(object, propertyName, newValue) {
-        if (!(propertyName in object)) {
-          return Reflect.set(object, propertyName, newValue);
-        }
         const validatedNewValue = schema.parse({
           ...object,
           [propertyName]: newValue,
@@ -84,19 +81,16 @@ export const ValidatedMutable = <
               return Reflect.set(object, propertyName, newValue);
             }
             const validatedNewValue = schema.parse(newValue);
-            const validatedValueProxy = isObject(validatedNewValue)
+            const validatedNewValueProxy = isObject(validatedNewValue)
               ? makeValidatedValueProxy(validatedNewValue)
               : validatedNewValue;
-            return Reflect.set(object, "value", validatedValueProxy);
+            return Reflect.set(object, "value", validatedNewValueProxy);
           },
         },
       );
     }
     return new Proxy(validatedValue, {
       set(object, propertyName, newValue) {
-        if (!(propertyName in object)) {
-          return Reflect.set(object, propertyName, newValue);
-        }
         const validatedNewValue = schema.parse({
           ...object,
           [propertyName]: newValue,
