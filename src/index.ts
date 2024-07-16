@@ -52,54 +52,42 @@ export const ValidatedMutable = <
   schema: Schema,
   options?: Options,
 ) => {
+  const makeValidatedValueProxy = (validatedValue: object) => {
+    return new Proxy(validatedValue, {
+      set(object, propertyName, newValue) {
+        if (!(propertyName in object)) {
+          return Reflect.set(object, propertyName, newValue);
+        }
+        const validatedNewValue = schema.parse({
+          ...object,
+          [propertyName]: newValue,
+        }) as Record<string | symbol, unknown>;
+        return Reflect.set(
+          object,
+          propertyName,
+          validatedNewValue[propertyName],
+        );
+      },
+    });
+  };
   const ctor = function ValidatedMutable(value: z.input<typeof schema>) {
     const validatedValue = schema.parse(value);
-    if (!isObject(validatedValue)) {
+    if (!isObject(validatedValue) || options?.wrapValue) {
+      const validatedValueProxy = isObject(validatedValue)
+        ? makeValidatedValueProxy(validatedValue)
+        : validatedValue;
       return new Proxy(
-        { value: validatedValue },
+        { value: validatedValueProxy },
         {
           set(object, propertyName, newValue) {
             if (propertyName !== "value") {
               return Reflect.set(object, propertyName, newValue);
             }
             const validatedNewValue = schema.parse(newValue);
-            return Reflect.set(object, "value", validatedNewValue);
-          },
-        },
-      );
-    }
-    if (options?.wrapValue) {
-      const makeValidatedValueProxy = (validatedValue: object) => {
-        return new Proxy(validatedValue, {
-          set(object, propertyName, newValue) {
-            if (!(propertyName in object)) {
-              return Reflect.set(object, propertyName, newValue);
-            }
-            const validatedNewValue = schema.parse({
-              ...object,
-              [propertyName]: newValue,
-            }) as Record<string | symbol, unknown>;
-            return Reflect.set(
-              object,
-              propertyName,
-              validatedNewValue[propertyName],
-            );
-          },
-        });
-      };
-      return new Proxy(
-        { value: makeValidatedValueProxy(validatedValue) },
-        {
-          set(object, propertyName, newValue) {
-            if (propertyName !== "value") {
-              return Reflect.set(object, propertyName, newValue);
-            }
-            const validatedNewValue = schema.parse(newValue) as object;
-            return Reflect.set(
-              object,
-              "value",
-              makeValidatedValueProxy(validatedNewValue),
-            );
+            const validatedValueProxy = isObject(validatedNewValue)
+              ? makeValidatedValueProxy(validatedNewValue)
+              : validatedNewValue;
+            return Reflect.set(object, "value", validatedValueProxy);
           },
         },
       );
