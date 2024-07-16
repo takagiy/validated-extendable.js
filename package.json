@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/takagiy/validated-extendable.git"
+    "url": "git+ssh://git@github.com/takagiy/validated-extendable.js.git"
   },
   "keywords": [
     "zod",
@@ -54,9 +54,9 @@
   "author": "Yuki Takagi <takagiy.4dev@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/takagiy/validated-extendable/issues"
+    "url": "https://github.com/takagiy/validated-extendable.js/issues"
   },
-  "homepage": "https://github.com/takagiy/validated-extendable/#readme",
+  "homepage": "https://github.com/takagiy/validated-extendable.js/#readme",
   "packageManager": "pnpm@9.4.0+sha256.b6fd0bfda555e7e584ad7e56b30c68b01d5a04f9ee93989f4b93ca8473c49c74",
   "ava": {
     "files": [
