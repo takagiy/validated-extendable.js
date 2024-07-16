@@ -258,3 +258,135 @@ test("validate primitive mutable error (mutation)", (t) => {
     age2.value = 0.5;
   });
 });
+
+class Status extends Validated(
+  z.discriminatedUnion("success", [
+    z.object({
+      success: z.literal(true),
+      message: z.string(),
+    }),
+    z.object({
+      success: z.literal(false),
+      error: z.string(),
+    }),
+  ]),
+  { wrapValue: true },
+) {
+  getError() {
+    return !this.value.success ? this.value.error : undefined;
+  }
+}
+
+test("validate discriminated union", (t) => {
+  const status = new Status({
+    success: true,
+    message: "ok",
+  });
+  t.is(status.value.success, true);
+  status.value.success && t.is(status.value.message, "ok");
+  const status2 = new Status({
+    success: false,
+    error: "ng",
+  });
+  t.is(status2.value.success, false);
+  status2.value.success || t.is(status2.value.error, "ng");
+});
+
+class Foo extends ValidatedMutable(
+  z.object({
+    foo: z.number().nonnegative().int(),
+    bar: z.object({
+      baz: z.number().nonnegative().int(),
+    }),
+  }),
+) {}
+
+test("validate nested object mutation", (t) => {
+  const foo = new Foo({
+    foo: 1,
+    bar: {
+      baz: 2,
+    },
+  });
+  t.is(foo.foo, 1);
+  t.is(foo.bar.baz, 2);
+  foo.foo = 3;
+  foo.bar.baz = 4;
+  t.is(foo.foo, 3);
+  t.is(foo.bar.baz, 4);
+});
+
+test("validate nested object mutation error", (t) => {
+  const foo = new Foo({
+    foo: 1,
+    bar: {
+      baz: 2,
+    },
+  });
+  t.throws(() => {
+    foo.foo = -1;
+  });
+  t.throws(() => {
+    foo.foo = 0.5;
+  });
+  t.throws(() => {
+    foo.bar = { baz: -1 };
+  });
+  t.throws(() => {
+    foo.bar = { baz: 0.5 };
+  });
+  foo.bar.baz = -1;
+  t.is(foo.bar.baz, -1);
+  foo.bar.baz = 0.5;
+  t.is(foo.bar.baz, 0.5);
+});
+
+class Foo2 extends ValidatedMutable(
+  z.object({
+    foo: z.number().nonnegative().int(),
+    bar: z.object({
+      baz: z.number().nonnegative().int(),
+    }),
+  }),
+  { wrapValue: true },
+) {}
+
+test("validate nested object mutation (wrapValue)", (t) => {
+  const foo = new Foo2({
+    foo: 1,
+    bar: {
+      baz: 2,
+    },
+  });
+  t.is(foo.value.foo, 1);
+  t.is(foo.value.bar.baz, 2);
+  foo.value.foo = 3;
+  foo.value.bar.baz = 4;
+  t.is(foo.value.foo, 3);
+  t.is(foo.value.bar.baz, 4);
+});
+
+test("validate nested object mutation error (wrapValue)", (t) => {
+  const foo = new Foo2({
+    foo: 1,
+    bar: {
+      baz: 2,
+    },
+  });
+  t.throws(() => {
+    foo.value.foo = -1;
+  });
+  t.throws(() => {
+    foo.value.foo = 0.5;
+  });
+  t.throws(() => {
+    foo.value.bar = { baz: -1 };
+  });
+  t.throws(() => {
+    foo.value.bar = { baz: 0.5 };
+  });
+  foo.value.bar.baz = -1;
+  t.is(foo.value.bar.baz, -1);
+  foo.value.bar.baz = 0.5;
+  t.is(foo.value.bar.baz, 0.5);
+});
