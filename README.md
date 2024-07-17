@@ -38,6 +38,9 @@ class Person extends Validated(schema) {
   }
 }
 
+/* A constructor typed based on the zod schema is created */
+// const person = new Person({ age: 25 }); // => Compile error: Property 'name' is missing in type '{ age: number; }' but required in type '{ name: string; age: number; }'.
+
 /* Constructor will validate the input using the zod schema! */
 const person = new Person({ name: "John", age: 25 });
 // const invalidPerson = new Person({ name: "John", age: -1 }); // => Throws an error
