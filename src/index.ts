@@ -1,9 +1,9 @@
-import type { ZodSchema, ZodTypeDef, z } from "zod";
+import type { z } from "zod";
 
 type IsPrimitive<T> = T extends object ? false : true;
 
 export type ValidatedConstructor<
-  Schema extends ZodSchema<unknown, ZodTypeDef, unknown>,
+  Schema extends z.ZodType<unknown>,
   WrapValue extends boolean,
 > = {
   new (
@@ -17,7 +17,7 @@ export type ValidatedConstructor<
 };
 
 export type ValidatedMutableConstructor<
-  Schema extends ZodSchema<unknown, ZodTypeDef, unknown>,
+  Schema extends z.ZodType<unknown>,
   WrapValue extends boolean,
 > = {
   new (
@@ -27,7 +27,7 @@ export type ValidatedMutableConstructor<
 };
 
 export const Validated = <
-  Schema extends ZodSchema<unknown, ZodTypeDef, unknown>,
+  Schema extends z.ZodType<unknown>,
   Options extends { wrapValue: true } | null = null,
 >(
   schema: Schema,
@@ -46,7 +46,7 @@ export const Validated = <
 };
 
 export const ValidatedMutable = <
-  Schema extends ZodSchema<unknown, ZodTypeDef, unknown>,
+  Schema extends z.ZodType<unknown>,
   Options extends { wrapValue: true } | null = null,
 >(
   schema: Schema,
