@@ -52,26 +52,32 @@ export const ValidatedMutable = <
   schema: Schema,
   options?: Options,
 ) => {
-  const makeValidatedValueProxy = (validatedValue: object) => {
-    return new Proxy(validatedValue, {
-      set(object, propertyName, newValue) {
-        const validatedNewValue = schema.parse({
-          ...object,
-          [propertyName]: newValue,
-        }) as Record<string | symbol, unknown>;
-        return Reflect.set(
-          object,
-          propertyName,
-          validatedNewValue[propertyName],
-        );
-      },
-    });
+  const makeValidatedValueProxy = (initialInput: unknown) => {
+    const inputObject: Record<string | symbol, unknown> = isObject(initialInput)
+      ? (structuredClone(initialInput) as Record<string | symbol, unknown>)
+      : {};
+    return (validatedValue: object) => {
+      return new Proxy(validatedValue, {
+        set(object, propertyName, newValue) {
+          inputObject[propertyName] = newValue;
+          const validatedNewValue = schema.parse(inputObject) as Record<
+            string | symbol,
+            unknown
+          >;
+          return Reflect.set(
+            object,
+            propertyName,
+            validatedNewValue[propertyName],
+          );
+        },
+      });
+    };
   };
   const ctor = function ValidatedMutable(value: z.input<typeof schema>) {
     const validatedValue = schema.parse(value);
     if (!isObject(validatedValue) || options?.wrapValue) {
       const validatedValueProxy = isObject(validatedValue)
-        ? makeValidatedValueProxy(validatedValue)
+        ? makeValidatedValueProxy(value)(validatedValue)
         : validatedValue;
       return new Proxy(
         { value: validatedValueProxy },
@@ -82,26 +88,14 @@ export const ValidatedMutable = <
             }
             const validatedNewValue = schema.parse(newValue);
             const validatedNewValueProxy = isObject(validatedNewValue)
-              ? makeValidatedValueProxy(validatedNewValue)
+              ? makeValidatedValueProxy(newValue)(validatedNewValue)
               : validatedNewValue;
             return Reflect.set(object, "value", validatedNewValueProxy);
           },
         },
       );
     }
-    return new Proxy(validatedValue, {
-      set(object, propertyName, newValue) {
-        const validatedNewValue = schema.parse({
-          ...object,
-          [propertyName]: newValue,
-        }) as Record<string | symbol, unknown>;
-        return Reflect.set(
-          object,
-          propertyName,
-          validatedNewValue[propertyName],
-        );
-      },
-    });
+    return makeValidatedValueProxy(value)(validatedValue);
   } as unknown as ValidatedMutableConstructor<
     Schema,
     Options extends { wrapValue: true } ? true : IsPrimitive<z.infer<Schema>>

@@ -411,3 +411,115 @@ test("validate instanceof", (t) => {
   t.is(article.postedAt.getMonth(), 0);
   t.is(article.postedAt.getDate(), 1);
 });
+
+class TransformedProperty extends ValidatedMutable(
+  z.object({
+    foo: z
+      .string()
+      .startsWith("foo:")
+      .transform((v) => v.slice(4)),
+    bar: z.string().min(1),
+  }),
+) {}
+
+class TransformedProperty2 extends ValidatedMutable(
+  z.object({
+    foo: z
+      .string()
+      .startsWith("foo:")
+      .transform((v) => v.slice(4)),
+    bar: z.string().min(1),
+  }),
+  { wrapValue: true },
+) {}
+
+test("validate transformed property", (t) => {
+  const transformed = new TransformedProperty({
+    foo: "foo:foo",
+    bar: "bar",
+  });
+  t.is(transformed.foo, "foo");
+  transformed.foo = "foo:bar";
+  transformed.bar = "baz";
+  t.is(transformed.foo, "bar");
+  t.is(transformed.bar, "baz");
+  transformed.bar = "qux";
+  transformed.foo = "foo:baz";
+  t.is(transformed.bar, "qux");
+  t.is(transformed.foo, "baz");
+
+  const transformed2 = new TransformedProperty2({
+    foo: "foo:foo",
+    bar: "bar",
+  });
+  t.is(transformed2.value.foo, "foo");
+  transformed2.value.foo = "foo:bar";
+  transformed2.value.bar = "baz";
+  t.is(transformed2.value.foo, "bar");
+  t.is(transformed2.value.bar, "baz");
+  transformed2.value.bar = "qux";
+  transformed2.value.foo = "foo:baz";
+  t.is(transformed2.value.bar, "qux");
+  transformed2.value = { foo: "foo:qux", bar: "quux" };
+  t.is(transformed2.value.foo, "qux");
+  t.is(transformed2.value.bar, "quux");
+  transformed2.value = { foo: "foo:baz", bar: "qux" };
+  transformed2.value.bar = "BAR";
+  t.is(transformed2.value.foo, "baz");
+  t.is(transformed2.value.bar, "BAR");
+  transformed2.value = { foo: "foo:FOO", bar: "BARBAR" };
+  transformed2.value.foo = "foo:FOOFOO";
+  t.is(transformed2.value.foo, "FOOFOO");
+  t.is(transformed2.value.bar, "BARBAR");
+});
+
+test("validate transformed property error (construct)", (t) => {
+  t.throws(() => {
+    new TransformedProperty({
+      foo: "foo",
+      bar: "bar",
+    });
+  });
+  t.throws(() => {
+    new TransformedProperty({
+      foo: "foo:foo",
+      bar: "",
+    });
+  });
+  t.throws(() => {
+    new TransformedProperty2({
+      foo: "foo",
+      bar: "bar",
+    });
+  });
+  t.throws(() => {
+    new TransformedProperty2({
+      foo: "foo:foo",
+      bar: "",
+    });
+  });
+});
+
+test("validate transformed property error (mutation)", (t) => {
+  const transformed = new TransformedProperty({
+    foo: "foo:foo",
+    bar: "bar",
+  });
+  t.throws(() => {
+    transformed.foo = "foo";
+  });
+  t.throws(() => {
+    transformed.bar = "";
+  });
+
+  const transformed2 = new TransformedProperty2({
+    foo: "foo:foo",
+    bar: "bar",
+  });
+  t.throws(() => {
+    transformed2.value.foo = "foo";
+  });
+  t.throws(() => {
+    transformed2.value.bar = "";
+  });
+});
