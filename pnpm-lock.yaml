@@ -8,12 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@tsconfig/node20':
-        specifier: ^20.1.4
-        version: 20.1.4
-      '@tsconfig/recommended':
-        specifier: ^1.0.7
-        version: 1.0.7
+      '@ungap/structured-clone':
+        specifier: ^1.2.0
+        version: 1.2.0
       zod:
         specifier: ^3.0.0
         version: 3.23.8
@@ -30,12 +27,18 @@ importers:
       '@swc/core':
         specifier: ^1.6.6
         version: 1.6.13
+      '@tsconfig/recommended':
+        specifier: ^1.0.7
+        version: 1.0.7
       '@tsconfig/strictest':
         specifier: ^2.0.5
         version: 2.0.5
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.10
+      '@types/ungap__structured-clone':
+        specifier: ^1.2.0
+        version: 1.2.0
       ava:
         specifier: ^6.1.3
         version: 6.1.3
@@ -301,9 +304,6 @@ packages:
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
 
-  '@tsconfig/node20@20.1.4':
-    resolution: {integrity: sha512-sqgsT69YFeLWf5NtJ4Xq/xAF8p4ZQHlmGW74Nu2tD4+g5fAsposc4ZfaaPixVu4y01BEiDCWLRDCvDM5JOsRxg==}
-
   '@tsconfig/recommended@1.0.7':
     resolution: {integrity: sha512-xiNMgCuoy4mCL4JTywk9XFs5xpRUcKxtWEcMR6FNMtsgewYTIgIR+nvlP4A4iRCAzRsHMnPhvTRrzp4AGcRTEA==}
 
@@ -327,6 +327,12 @@ packages:
 
   '@types/responselike@1.0.3':
     resolution: {integrity: sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==}
+
+  '@types/ungap__structured-clone@1.2.0':
+    resolution: {integrity: sha512-ZoaihZNLeZSxESbk9PUAPZOlSpcKx81I1+4emtULDVmBLkYutTcMlCj2K9VNlf9EWODxdO6gkAqEaLorXwZQVA==}
+
+  '@ungap/structured-clone@1.2.0':
+    resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
   '@vercel/nft@0.26.5':
     resolution: {integrity: sha512-NHxohEqad6Ra/r4lGknO52uc/GrWILXAMs1BB4401GTqww0fw1bAqzpG1XHuDO+dprg4GvsD9ZLLSsdo78p9hQ==}
@@ -1564,8 +1570,6 @@ snapshots:
 
   '@tokenizer/token@0.3.0': {}
 
-  '@tsconfig/node20@20.1.4': {}
-
   '@tsconfig/recommended@1.0.7': {}
 
   '@tsconfig/strictest@2.0.5': {}
@@ -1595,6 +1599,10 @@ snapshots:
   '@types/responselike@1.0.3':
     dependencies:
       '@types/node': 20.14.10
+
+  '@types/ungap__structured-clone@1.2.0': {}
+
+  '@ungap/structured-clone@1.2.0': {}
 
   '@vercel/nft@0.26.5':
     dependencies:
