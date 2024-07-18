@@ -1,5 +1,5 @@
-import type { z } from "zod";
 import structuredClone from "@ungap/structured-clone";
+import type { z } from "zod";
 
 type IsPrimitive<T> = T extends object ? false : true;
 
