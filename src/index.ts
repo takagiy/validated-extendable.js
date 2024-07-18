@@ -1,4 +1,4 @@
-import { clone } from "ramda";
+import structuredClone from "@ungap/structured-clone";
 import type { z } from "zod";
 
 type IsPrimitive<T> = T extends object ? false : true;
@@ -55,7 +55,7 @@ export const ValidatedMutable = <
 ) => {
   const makeValidatedValueProxy = (initialInput: unknown) => {
     const inputObject: Record<string | symbol, unknown> = isObject(initialInput)
-      ? (clone(initialInput) as Record<string | symbol, unknown>)
+      ? (structuredClone(initialInput) as Record<string | symbol, unknown>)
       : {};
     return (validatedValue: object) => {
       return new Proxy(validatedValue, {
