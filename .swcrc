@@ -5,7 +5,6 @@
     "parser": {
       "syntax": "typescript"
     },
-    "target": "es2015",
     "baseUrl": "./src",
     "paths": {
       "@/*": [
@@ -17,5 +16,8 @@
     "type": "commonjs"
   },
   "sourceMaps": true,
-  "isModule": true
+  "isModule": true,
+  "env": {
+    "targets": "node 12, > 0.25%, not dead"
+  }
 }
