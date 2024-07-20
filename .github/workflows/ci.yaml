@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  setup:
-    name: Setup
+  lint:
+    name: Lint
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -20,22 +20,10 @@ jobs:
           node-version: "20"
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
-  lint:
-    name: Lint
-    runs-on: ubuntu-20.04
-    needs: setup
-    steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable pnpm
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "pnpm"
       - run: pnpm run lint
   test:
     name: Test
     runs-on: ubuntu-20.04
-    needs: setup
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable pnpm
@@ -43,4 +31,5 @@ jobs:
         with:
           node-version: "20"
           cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
       - run: pnpm run test
