@@ -33,3 +33,10 @@ jobs:
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test
+  check-lockfiles:
+    name: Check Lockfiles
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: if [ -f package-lock.json ]; then echo "'package-lock.json' exists. Please use 'pnpm' instead of 'npm'."; exit 1; fi
+      - run: if [ -f yarn.lock ]; then echo "'yarn.lock' exists. Please use 'pnpm' instead of 'yarn'."; exit 1; fi
