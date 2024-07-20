@@ -3,6 +3,7 @@
 Library that allows you to define classes extending zod schemas to avoid boilerplate code.
 
 [![npm version](https://badge.fury.io/js/validated-extendable.svg)](https://badge.fury.io/js/validated-extendable)
+[![CI](https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml/badge.svg)](https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml)
 
 ## Installation
 
