@@ -37,6 +37,10 @@ class Person extends Validated(schema) {
   greet() {
     console.log(`Hello, I'm ${this.name}.`);
   }
+
+  isAdult() {
+    return this.age >= 18;
+  }
 }
 
 /* A constructor that is typed based on the zod schema is created */
