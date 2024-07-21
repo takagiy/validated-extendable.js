@@ -1,6 +1,6 @@
 # validated-extendable.js
 
-Library that allows you to define classes extending zod schemas to avoid boilerplate code.
+A library that allows you to define classes extending zod schemas to avoid boilerplate code.
 
 [![npm version](https://badge.fury.io/js/validated-extendable.svg)](https://badge.fury.io/js/validated-extendable)
 [![CI](https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml/badge.svg)](https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml)
@@ -39,7 +39,7 @@ class Person extends Validated(schema) {
   }
 }
 
-/* A constructor typed based on the zod schema is created */
+/* A constructor that is typed based on the zod schema is created */
 // const person = new Person({ age: 25 }); // => Compile error: Property 'name' is missing in type '{ age: number; }' but required in type '{ name: string; age: number; }'.
 
 /* Constructor will validate the input using the zod schema! */
@@ -59,7 +59,7 @@ Person.schema.parse({ name: "John", age: 25 }); // => { name: 'John', age: 25 }
 import { ValidatedMutable } from "validated-extendable";
 import { z } from "zod";
 
-/* By default, all properties are readonly. You can use 'ValidatedMutable' instead of 'Validated' to make them mutable */
+/* By default, all properties are readonly. To make them mutable, you can use 'ValidatedMutable' instead of 'Validated'. */
 class Person extends ValidatedMutable(
   z.object({
     name: z.string().min(1),
@@ -100,9 +100,9 @@ console.log(age.value); // => 25
 
 ## Limitations
 
-By default, the result type of the validation (other than primitive types) should not be a uninheritable type (e.g. tuple types and union types).
+By default, the result type of the validation (other than primitive types) should not be an uninheritable type (e.g. tuple types and union types).
 
-But you can use `wrapValue` option to wrap an uninheritable type with an object to make it inheritable (like primitive types are wrapped in above examples).
+However, you can use the `wrapValue` option to wrap an uninheritable type within an object, making it inheritable (like primitive types are wrapped in above examples).
 
 ```typescript
 import { Validated } from "validated-extendable";
