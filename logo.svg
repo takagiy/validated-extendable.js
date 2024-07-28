@@ -15,52 +15,44 @@
      id="layer1"
      transform="translate(157.5,67.50001)">
     <g
-       id="g2"
-       transform="translate(66.12543,-890)">
+       id="g4"
+       transform="translate(963.28585,820.00975)">
       <path
          style="display:inline;fill:none;stroke:#000000;stroke-width:315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="m 720.00006,990 -180.00013,540 h -180 l 180,-540 z"
+         d="M -179.9999,-720.00001 -360,-180 h -180 l 180,-540.00001 z"
          id="path3-64-2-7" />
       <path
-         style="display:inline;fill:none;stroke:#000000;stroke-width:315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="m 359.99998,990 180.0001,540 H 720.00006 L 540.00008,990 Z"
-         id="path3-64-3" />
-      <path
          style="fill:none;stroke:#000000;stroke-width:315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="m -51.565735,990 179.999995,540 180,-540"
-         id="path1-1-7" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:135;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="m 398.43426,900 h -90"
-         id="path2-9" />
+         d="m -951.5657,-720.01951 180,540.00001 180,-540.00001 231.5658,0.0195 180,540.00001 H -360 l -180,-540.00001"
+         id="path4-3" />
     </g>
-    <path
-       style="fill:none;stroke:#fefefe;stroke-width:90;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="m 464.55969,10 h -90"
-       id="path2" />
-    <path
-       style="display:inline;fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="M 786.12551,100 606.12536,640 h -180 l 180,-540 z"
-       id="path3-64-2" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="m 426.12541,640 180,-540 h 180 l -180,540 z"
-       id="path3-6" />
-    <path
-       style="display:inline;fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="m 426.12541,100 180.0001,540 h 180 l -180,-540 z"
-       id="path3-64" />
-    <path
-       style="display:inline;fill:none;stroke:#000000;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="m 426.12541,100 180,540 h 180 l -180,-540 z"
-       id="path3" />
-    <path
-       style="fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="m 14.559691,100 179.999999,540 180,-540"
-       id="path1-1" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="M 14.559696,100.00001 194.55969,640 l 180,-539.99999"
-       id="path1" />
+    <g
+       id="g6"
+       transform="translate(101.72013,910.00976)">
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 681.56582,-810.00001 -180.00015,540 h -180 l 180,-540 z"
+         id="path3-64-2" />
+      <path
+         style="display:inline;fill:none;stroke:#000000;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 321.56572,-270.00001 180,-540 h 180 l -180,540 z"
+         id="path3-6" />
+      <path
+         style="fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 270,-810 231.56572,-10e-6 180,540 h -180 l -180,-540"
+         id="path6" />
+      <path
+         style="display:inline;fill:none;stroke:#000000;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m 321.56572,-810.00001 180,540 h 180 l -180,-540 z"
+         id="path3" />
+      <path
+         style="fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="M -90,-810 90,-270 270,-810"
+         id="path5" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+         d="M -89.999994,-810 90,-270.00001 270,-810"
+         id="path1" />
+    </g>
   </g>
 </svg>
