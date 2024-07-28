@@ -1,23 +1,26 @@
-# validated-extendable.js
+<p align="center">
+  <img src="logo.svg" width="200px" align="center" alt="validated-extendable.js" />
+  <h1 align="center">validated-extendable.js</h1>
+  <p align="center">A library that lets you define classes from zod schemas to avoid boilerplate code.</p>
+</p>
 
-A library that allows you to define classes extending zod schemas to avoid boilerplate code.
-
-[![npm version](https://badge.fury.io/js/validated-extendable.svg)](https://badge.fury.io/js/validated-extendable)
-[![CI](https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml/badge.svg)](https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml)
+<p align="center">
+  <a href="https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml">
+    <img alt="CI" src="https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml/badge.svg">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img alt="License" src="https://img.shields.io/npm/l/validated-extendable">
+  </a>
+  <a href="https://www.npmjs.com/package/validated-extendable">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/validated-extendable">
+  </a>
+</p>
 
 ## Installation
 
-```bash
-npm install validated-extendable zod
-```
-
-```bash
-pnpm add validated-extendable zod
-```
-
-```bash
-yarn add validated-extendable zod
-```
+| npm                                             | pnpm                                         | yarn                                         |
+| ----------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| <pre>npm install validated-extendable zod</pre> | <pre>pnpm add validated-extendable zod</pre> | <pre>yarn add validated-extendable zod</pre> |
 
 ## Usage
 
