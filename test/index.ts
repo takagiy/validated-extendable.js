@@ -7,7 +7,11 @@ class Person extends Validated(
     name: z.string().min(1),
     age: z.number().nonnegative().int(),
   }),
-) {}
+) {
+  greet() {
+    return `Hi, It's ${this.name}!`;
+  }
+}
 
 class Person2 extends Validated(
   z.object({
@@ -17,7 +21,11 @@ class Person2 extends Validated(
   {
     wrapValue: true,
   },
-) {}
+) {
+  greet() {
+    return `Hi, It's ${this.value.name}!`;
+  }
+}
 
 test("validate", (t) => {
   const person = new Person({
@@ -26,6 +34,7 @@ test("validate", (t) => {
   });
   t.is(person.name, "John");
   t.is(person.age, 30);
+  t.is(person.greet(), "Hi, It's John!");
 
   const person2 = new Person2({
     name: "John",
@@ -33,6 +42,7 @@ test("validate", (t) => {
   });
   t.is(person2.value.name, "John");
   t.is(person2.value.age, 30);
+  t.is(person2.greet(), "Hi, It's John!");
 });
 
 test("validate error", (t) => {
@@ -79,7 +89,11 @@ class PersonMutable extends ValidatedMutable(
     name: z.string().min(1),
     age: z.number().nonnegative().int(),
   }),
-) {}
+) {
+  greet() {
+    return `Hi, It's ${this.name}!`;
+  }
+}
 
 class PersonMutable2 extends ValidatedMutable(
   z.object({
@@ -89,7 +103,11 @@ class PersonMutable2 extends ValidatedMutable(
   {
     wrapValue: true,
   },
-) {}
+) {
+  greet() {
+    return `Hi, It's ${this.value.name}!`;
+  }
+}
 
 test("validate mutable", (t) => {
   const person = new PersonMutable({
@@ -97,20 +115,24 @@ test("validate mutable", (t) => {
     age: 30,
   });
   t.is(person.name, "John");
+  t.is(person.greet(), "Hi, It's John!");
   t.is(person.age, 30);
   person.name = "Jane";
   person.age = 31;
   t.is(person.name, "Jane");
+  t.is(person.greet(), "Hi, It's Jane!");
   t.is(person.age, 31);
   const person2 = new PersonMutable2({
     name: "John",
     age: 30,
   });
   t.is(person2.value.name, "John");
+  t.is(person2.greet(), "Hi, It's John!");
   t.is(person2.value.age, 30);
   person2.value.name = "Jane";
   person2.value.age = 31;
   t.is(person2.value.name, "Jane");
+  t.is(person2.greet(), "Hi, It's Jane!");
   t.is(person2.value.age, 31);
 });
 

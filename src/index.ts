@@ -33,10 +33,15 @@ export const Validated = <
   schema: Schema,
   options?: Options,
 ) => {
-  const ctor = function Validated(value: z.input<typeof schema>) {
+  const ctor = function Validated(
+    this: Record<string, unknown>,
+    value: z.input<typeof schema>,
+  ) {
     const validatedValue = schema.parse(value);
     const wrapValue = !isObject(validatedValue) || options?.wrapValue;
-    return wrapValue ? { value: validatedValue } : validatedValue;
+    const _this = wrapValue ? { value: validatedValue } : validatedValue;
+    Object.setPrototypeOf(_this, this);
+    return _this;
   } as unknown as ValidatedConstructor<
     Schema,
     Options extends { wrapValue: true } ? true : IsPrimitive<z.infer<Schema>>
@@ -74,13 +79,16 @@ export const ValidatedMutable = <
       });
     };
   };
-  const ctor = function ValidatedMutable(value: z.input<typeof schema>) {
+  const ctor = function ValidatedMutable(
+    this: Record<string, unknown>,
+    value: z.input<typeof schema>,
+  ) {
     const validatedValue = schema.parse(value);
     if (!isObject(validatedValue) || options?.wrapValue) {
       const validatedValueProxy = isObject(validatedValue)
         ? makeValidatedValueProxy(value)(validatedValue)
         : validatedValue;
-      return new Proxy(
+      const _this = new Proxy(
         { value: validatedValueProxy },
         {
           set(object, propertyName, newValue) {
@@ -95,8 +103,12 @@ export const ValidatedMutable = <
           },
         },
       );
+      Object.setPrototypeOf(_this, this);
+      return _this;
     }
-    return makeValidatedValueProxy(value)(validatedValue);
+    const _this = makeValidatedValueProxy(value)(validatedValue);
+    Object.setPrototypeOf(_this, this);
+    return _this;
   } as unknown as ValidatedMutableConstructor<
     Schema,
     Options extends { wrapValue: true } ? true : IsPrimitive<z.infer<Schema>>
