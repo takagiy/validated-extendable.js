@@ -7,6 +7,7 @@
 <p align="center">
   <a href="https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml"><img alt="CI" src="https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml/badge.svg"></a>
   <a href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/npm/l/validated-extendable"></a>
+  <img alt="Written in TypeScript" src="https://img.shields.io/badge/%3C/%3E-TypeScript-3178c6">
   <a href="https://www.npmjs.com/package/validated-extendable"><img alt="NPM Version" src="https://img.shields.io/npm/v/validated-extendable"></a>
 </p>
 
