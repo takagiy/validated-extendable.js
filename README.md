@@ -16,7 +16,7 @@
 ## Features
 
 - Defining a class extending a zod schema
-- Property types inferred from the schema
+- Class properties and constructor types inferred from the schema
 - Validation in the constructor
 - Both readonly (default) and mutable properties
 - Validation in setters of mutable properties
