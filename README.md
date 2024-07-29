@@ -7,9 +7,20 @@
 <p align="center">
   <a href="https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml"><img alt="CI" src="https://github.com/takagiy/validated-extendable.js/actions/workflows/ci.yaml/badge.svg"></a>
   <a href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/npm/l/validated-extendable"></a>
-  <img alt="Written in TypeScript" src="https://img.shields.io/badge/%3C/%3E-TypeScript-3178c6">
+  <img alt="Written in TypeScript" src="https://img.shields.io/badge/-TypeScript-3178c6?logo=typescript&logoColor=white&labelColor=3178c6">
   <a href="https://www.npmjs.com/package/validated-extendable"><img alt="NPM Version" src="https://img.shields.io/npm/v/validated-extendable"></a>
+  <a href="https://bundlephobia.com/package/validated-extendable"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/validated-extendable"></a>
+  <a href="https://bundlephobia.com/package/validated-extendable"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/validated-extendable"></a>
 </p>
+
+## Features
+
+- Defining a class extending a zod schema
+- Property types inferred from the schema
+- Validation in the constructor
+- Both readonly (default) and mutable properties
+- Validation in setters of mutable properties
+- Wrapping a validated primitive value in a class
 
 ## Installation
 
