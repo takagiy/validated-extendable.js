@@ -40,8 +40,7 @@ export const Validated = <
     const validatedValue = schema.parse(value);
     const wrapValue = !isObject(validatedValue) || options?.wrapValue;
     const _this = wrapValue ? { value: validatedValue } : validatedValue;
-    Object.setPrototypeOf(_this, this);
-    return _this;
+    return Object.create(this, Object.getOwnPropertyDescriptors(_this));
   } as unknown as ValidatedConstructor<
     Schema,
     Options extends { wrapValue: true } ? true : IsPrimitive<z.infer<Schema>>
@@ -88,8 +87,9 @@ export const ValidatedMutable = <
       const validatedValueProxy = isObject(validatedValue)
         ? makeValidatedValueProxy(value)(validatedValue)
         : validatedValue;
-      const _this = new Proxy(
-        { value: validatedValueProxy },
+      const _this = { value: validatedValueProxy };
+      return new Proxy(
+        Object.create(this, Object.getOwnPropertyDescriptors(_this)),
         {
           set(object, propertyName, newValue) {
             if (propertyName !== "value") {
@@ -103,12 +103,11 @@ export const ValidatedMutable = <
           },
         },
       );
-      Object.setPrototypeOf(_this, this);
-      return _this;
     }
-    const _this = makeValidatedValueProxy(value)(validatedValue);
-    Object.setPrototypeOf(_this, this);
-    return _this;
+    const _this = validatedValue;
+    return makeValidatedValueProxy(value)(
+      Object.create(this, Object.getOwnPropertyDescriptors(_this)),
+    );
   } as unknown as ValidatedMutableConstructor<
     Schema,
     Options extends { wrapValue: true } ? true : IsPrimitive<z.infer<Schema>>
