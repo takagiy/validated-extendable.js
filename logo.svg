@@ -49,50 +49,48 @@
        y1="-257.50977"
        x2="640.77985"
        y2="-797.50977"
-       gradientUnits="userSpaceOnUse" />
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(104.72019,910)" />
     <linearGradient
        xlink:href="#linearGradient20"
-       id="linearGradient22"
-       x1="-145.77985"
-       y1="370"
-       x2="940.77985"
-       y2="370"
-       gradientUnits="userSpaceOnUse" />
+       id="linearGradient11"
+       x1="-486.56012"
+       y1="-610.06006"
+       x2="605.99957"
+       y2="-610.06006"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(337.78026,980.06006)" />
   </defs>
   <g
      id="layer1"
      transform="translate(157.5,67.50001)">
     <path
-       id="path4-3"
-       style="fill:none;stroke:url(#linearGradient22);stroke-width:315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="m 11.72015,99.99024 180,540.00001 180,-540.00001 231.5658,0.0195 180,540.00001 h -180.0001 l -180,-540.00001 m 360.0001,0 -180.0001,540.00001 h -180 l 180,-540.00001 z" />
-    <g
-       id="g6"
-       transform="translate(101.72013,910.00976)">
-      <path
-         style="display:inline;fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="m 681.56582,-810.00001 -180.00015,540 h -180 l 180,-540 z"
-         id="path3-64-2" />
-      <path
-         style="display:inline;fill:none;stroke:#184d82;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="m 321.56572,-270.00001 180,-540 h 180 l -180,540 z"
-         id="path3-6" />
-      <path
-         style="fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="m 270,-810 231.56572,-10e-6 180,540 h -180 l -180,-540"
-         id="path6" />
-      <path
-         style="display:inline;fill:none;stroke:url(#linearGradient4);stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="m 321.56572,-810.00001 180,540 h 180 l -180,-540 z"
-         id="path3" />
-      <path
-         style="fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="M -90,-810 90,-270 270,-810"
-         id="path5" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-         d="M -89.999994,-810 90,-270.00001 270,-810"
-         id="path1" />
-    </g>
+       id="path5-7"
+       style="display:inline;fill:none;stroke:url(#linearGradient11);stroke-width:315;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="m 8.7201389,100 180.0000011,540 180,-540 m 6,0 231.56572,-1e-5 180,540 h -180 l -180,-540 m 360.0001,0 -180.00015,540 h -180 l 180,-540 z" />
+    <path
+       style="display:inline;fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 786.28601,99.99999 -180.00015,540 h -180 l 180,-540 z"
+       id="path3-64-2" />
+    <path
+       style="display:inline;fill:none;stroke:#184d82;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 426.28591,639.99999 180,-540 h 180 l -180,540 z"
+       id="path3-6" />
+    <path
+       style="display:inline;fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 374.72019,100 231.56572,-1e-5 180,540 h -180 l -180,-540"
+       id="path6" />
+    <path
+       style="display:inline;fill:none;stroke:url(#linearGradient4);stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 426.28591,99.99999 180,540 h 180 l -180,-540 z"
+       id="path3" />
+    <path
+       style="display:inline;fill:none;stroke:#ffffff;stroke-width:270;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 8.7201909,100 179.9999991,540 180,-540"
+       id="path5" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:180;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 8.7201969,100 188.72019,639.99999 368.72019,100"
+       id="path1" />
   </g>
 </svg>
